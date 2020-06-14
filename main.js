@@ -1021,8 +1021,13 @@ var CheckBalanceMenuText = function (Overpaid,Season,Credit,Paid,Balance){
 };
 
 var TrainingMenuText = function (){
-    if (GetLang()){sayText("1:Tree Hardening/Transplanting\n2:Tree Bag Planting\n3:Tree Socketing\n4:Sorghum Weeding\n5:Maize Topdress\n6:Maize Intercrop\n7:Pest Mitigation")}
-    else {sayText("1:Kufunua/Kupanda Miti\n2:Kupanda miti mifukoni\n3:Socketing Miti\n4:Kupalilia Wimbi\n5:Top Dress\n6:Kupanda Mahindi/Maharagwe\n7:Wadudu/Magonjwa")}
+    if (GetLang()){sayText("1:Tree Transplanting\n2:Tree Bag Planting\n3:Tree Socketing\n4:Sorghum Weeding\n5:Maize Topdress\n6:Maize Intercrop\n7:Maize Harvest\n0:MORE")}
+    else {sayText("1:Kupanda Miti\n2:Kupanda miti mifukoni\n3:Socketing Miti\n4:Kupalilia Wimbi\n5:TopDress\n6:Kupanda Mahindi/Maharagwe\n7:Kuvuna Mahindi\n0:Endelea")}
+};
+
+var TrainingMenuNextText = function (){
+    if (GetLang()){sayText("8: Pest Mitigation\n9: Vegetables")}
+    else {sayText("8: Wadudu/Magonjwa\n9: Kupanda Mboga")}
 };
 
 var TrainingTriggeredText = function (){
@@ -3052,7 +3057,13 @@ addInputHandler('TrainingSelect', function(input) {
         contact.save();
     }   
     InteractionCounter('TrainingSelect');
-    if (input == 6){
+    
+    if (input == 0 ){
+        TrainingMenuNextText();
+        promptDigits("TrainingSelect", {submitOnHash: true, maxDigits: 1, timeout: 5})
+    }
+    
+    else if (input == 6){
 
         var Random = Math.random();
         console.log(Random)
@@ -3065,16 +3076,12 @@ addInputHandler('TrainingSelect', function(input) {
     
         TrainingTriggeredText();
     }
-    else if (input == 5){
-        TriggerTraining("SVffc2c4aa2be69ab5");
+    else if (input == 1){
+        TriggerTraining("SV87c0c32ff5e3ebaa");
         TrainingTriggeredText();
     }
     else if (input == 2){
         TriggerTraining("SV647a6f30fad7625d");
-        TrainingTriggeredText();
-    }
-    else if (input == 7){
-        TriggerTraining("SV6d234d3094715099");
         TrainingTriggeredText();
     }
     else if (input == 3){
@@ -3085,8 +3092,20 @@ addInputHandler('TrainingSelect', function(input) {
         TriggerTraining("SV7aa1486d6be8ae59");
         TrainingTriggeredText();
     }
-    else if (input == 1){
-        TriggerTraining("SV87c0c32ff5e3ebaa");
+    else if (input == 5){
+        TriggerTraining("SVffc2c4aa2be69ab5");
+        TrainingTriggeredText();
+    }
+    else if (input == 7){
+        TriggerTraining("SV72a3bbd1d14b037b");
+        TrainingTriggeredText();
+    }
+    else if (input == 8){
+        TriggerTraining("SV6d234d3094715099");
+        TrainingTriggeredText();
+    }
+    else if (input == 9){
+        TriggerTraining("SVeafd5eeb2dadc2d2");
         TrainingTriggeredText();
     }
     else{
