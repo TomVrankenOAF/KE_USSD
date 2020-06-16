@@ -366,6 +366,7 @@ addInputHandler("BalanceContinue", function(input) {
 })
 
 addInputHandler("BalanceSMSContinue", function(input) {
+    var client = JSON.parse(state.vars.client);
     LogSessionID();
     InteractionCounter("BalanceSMSContinue");
 
