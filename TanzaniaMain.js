@@ -51,6 +51,18 @@ var RosterClientGet = function (AccNum){
     return client;
 };
 
+var BackToMainFunction = function(){
+    if (typeof(state.vars.client) !== 'undefined'){
+        var client = JSON.parse(state.vars.client);
+        MainMenuText (client);
+        promptDigits("MainMenu", {submitOnHash: true, maxDigits: 1, timeout: 5});
+    }
+    else{
+        SplashMenuText();
+        promptDigits("SplashMenu", {submitOnHash: true, maxDigits: 8, timeout: 5});
+    }
+}
+
 var DisplayBalance = function(client){
 
     var i = state.vars.SeasonCount;
@@ -133,7 +145,7 @@ var SendPushSMStoContact = function(content, label){
 // TEXT functions
 
 var SplashMenuText = function (){
-    sayText("Karibu One Acre Fund. Tafadhali andika namba yako ya akaunti\nPiga 0800713888 bure kama umeisahau namba yako au bonyeza 1 kuomba upigiwe")
+    sayText("Karibu One Acre Fund. Andika namba ya akaunti\n\nPiga 0800713888 bure kama umeisahau bonyeza\n1. Kuomba upigiwe\n2. Jinsi ya kufanya marejesho")
 };
 var CallCentreInfoPlusBackText = function (){
     sayText("Tafadhali piga 0800713888 bure, Jumatatu hadi Ijumaa kuanzia saa 2 asubuhi hadi saa 11 jioni. Asante\n9. Rudi mwanzo")
@@ -202,6 +214,10 @@ addInputHandler("SplashMenu", function(SplashMenu) {
             promptDigits("SplashMenu", {submitOnHash: true, maxDigits: 8, timeout: 5});
         }
     }
+    else if (SplashMenu == 2){
+        PaymentInstrucMNOSelectText();
+        promptDigits("PaymentMNO", {submitOnHash: true, maxDigits: 1, timeout: 5});
+    }
     else {
         ClientAccNum = SplashMenu;
         if (RosterClientVal(ClientAccNum)){
@@ -267,9 +283,7 @@ addInputHandler("MainMenu", function(MainMenu) {
 addInputHandler("BackToMain", function(input) {
     LogSessionID();
     InteractionCounter("BackToMain");
-    var client = JSON.parse(state.vars.client);
-    MainMenuText (client);
-    promptDigits("MainMenu", {submitOnHash: true, maxDigits: 1, timeout: 5});
+    BackToMainFunction();
 });
 
 // PaymentMNO
@@ -277,10 +291,8 @@ addInputHandler("BackToMain", function(input) {
 addInputHandler("PaymentMNO", function(input) {
     LogSessionID();
     InteractionCounter("PaymentMNO");
-    var client = JSON.parse(state.vars.client);
     if (input == 9){
-        MainMenuText (client);
-        promptDigits("MainMenu", {submitOnHash: true, maxDigits: 1, timeout: 5});
+        BackToMainFunction();
     }
     else if (input == 1){
         VodacomInstrucSMS();
