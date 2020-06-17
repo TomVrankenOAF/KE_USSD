@@ -51,6 +51,18 @@ var RosterClientGet = function (AccNum){
     return client;
 };
 
+var BackToMainFunction = function(){
+    if (typeof(state.vars.client) !== 'undefined'){
+        var client = JSON.parse(state.vars.client);
+        MainMenuText (client);
+        promptDigits("MainMenu", {submitOnHash: true, maxDigits: 1, timeout: 5});
+    }
+    else{
+        SplashMenuText();
+        promptDigits("SplashMenu", {submitOnHash: true, maxDigits: 8, timeout: 5});
+    }
+}
+
 var DisplayBalance = function(client){
 
     var i = state.vars.SeasonCount;
@@ -271,15 +283,7 @@ addInputHandler("MainMenu", function(MainMenu) {
 addInputHandler("BackToMain", function(input) {
     LogSessionID();
     InteractionCounter("BackToMain");
-    if (typeof(state.vars.client) !== 'undefined'){
-        var client = JSON.parse(state.vars.client);
-        MainMenuText (client);
-        promptDigits("MainMenu", {submitOnHash: true, maxDigits: 1, timeout: 5});
-    }
-    else{
-        SplashMenuText();
-        promptDigits("SplashMenu", {submitOnHash: true, maxDigits: 8, timeout: 5});
-    }
+    BackToMainFunction();
 });
 
 // PaymentMNO
@@ -287,10 +291,8 @@ addInputHandler("BackToMain", function(input) {
 addInputHandler("PaymentMNO", function(input) {
     LogSessionID();
     InteractionCounter("PaymentMNO");
-    var client = JSON.parse(state.vars.client);
     if (input == 9){
-        MainMenuText (client);
-        promptDigits("MainMenu", {submitOnHash: true, maxDigits: 1, timeout: 5});
+        BackToMainFunction();
     }
     else if (input == 1){
         VodacomInstrucSMS();
