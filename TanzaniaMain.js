@@ -48,6 +48,7 @@ var RosterClientGet = function (AccNum){
     rosterAPI.verbose = true;
     rosterAPI.dataTableAttach();
     client = rosterAPI.getClient(AccNum,'TZ');
+    console.log(stringify(client));
     return client;
 };
 
