@@ -224,6 +224,7 @@ addInputHandler("SplashMenu", function(SplashMenu) {
             console.log("SuccessFully Validated against Roster");
             client = RosterClientGet(ClientAccNum);
             state.vars.client = JSON.stringify(TrimClientJSON(client));
+            console.log(state.vars.client);
             call.vars.client = JSON.stringify(TrimClientJSON(client));
             call.vars.AccNum = ClientAccNum;
             MainMenuText (client);
