@@ -1029,6 +1029,11 @@ var TrainingMenuNextText = function (){
     if (GetLang()){sayText("8: Pest Mitigation\n9: Vegetables")}
     else {sayText("8: Wadudu/Magonjwa\n9: Kupanda Mboga")}
 };
+var TrainingPlatSelectText = function (){
+    if (GetLang()){sayText("1. SMS\n2. KUPIGIWA")}
+    else {sayText("1. SMS\n2. Get a FREE CALL")}
+};
+
 
 var TrainingTriggeredText = function (){
     if (GetLang()){sayText("A training SMS has been sent to your phone. Messages are free! But please delete unwanted SMS in your phone to make space for incoming.")}
@@ -3105,11 +3110,27 @@ addInputHandler('TrainingSelect', function(input) {
         TrainingTriggeredText();
     }
     else if (input == 9){
-        TriggerTraining("SVeafd5eeb2dadc2d2");
-        TrainingTriggeredText();
+        TrainingPlatSelectText();
+        promptDigits("TrainingPlatformSelect", {submitOnHash: true, maxDigits: 1, timeout: 5})
     }
     else{
         TrainingMenuText();
         promptDigits("TrainingSelect", {submitOnHash: true, maxDigits: 1, timeout: 5})
     }
 });
+addInputHandler('TrainingPlatformSelect', function(input) {
+    LogSessionID();
+    InteractionCounter('TrainingPlatSelect');
+    
+    if (input == 1 ){
+        TriggerTraining("SVeafd5eeb2dadc2d2");
+        TrainingTriggeredText();
+    }
+    else {
+
+        if (GetLang()){TriggerTraining("SV40cc89e83d0e5810")}
+        else {TriggerTraining("SV6b002eba0603b476")}
+        TrainingTriggeredText();
+        hangUp();
+    }
+
