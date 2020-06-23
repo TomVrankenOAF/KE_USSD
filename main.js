@@ -1034,10 +1034,13 @@ var TrainingPlatSelectText = function (){
     else {sayText("1. SMS\n2. KUPIGIWA")}
 };
 
-
 var TrainingTriggeredText = function (){
     if (GetLang()){sayText("A training SMS has been sent to your phone. Messages are free! But please delete unwanted SMS in your phone to make space for incoming.")}
     else {sayText("Ujumbe wa mafunzo umetumwa kwa simu yako. Ujumbe wote ni bure! Kumbuka kufuta SMS usizohitaji ili uwe na nafasi ya kupata ujumbe zaidi.")}
+};
+var TrainingTriggeredIVRText = function (){
+    if (GetLang()){sayText(" You will be called by 0711 082 882.")}
+    else {sayText("Utapigiwa moja kwa moja na 0711 082 882.")}
 };
 
 var CallCenterMenuText = function (){
@@ -3127,10 +3130,10 @@ addInputHandler('TrainingPlatformSelect', function(input) {
         TrainingTriggeredText();
     }
     else {
-
+        TrainingTriggeredIVRText();
+        hangUp();
         if (GetLang()){TriggerTraining("SV40cc89e83d0e5810")}
         else {TriggerTraining("SV6b002eba0603b476")}
-        TrainingTriggeredText();
-        hangUp();
+
     }
 });
