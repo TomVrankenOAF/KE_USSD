@@ -182,16 +182,16 @@ var RosterColRequest = function (AccNum,Amount){
 };
 
 var TriggerTraining = function (ServiceID){
-    //try{
+    try{
         var service = project.initServiceById(ServiceID);
         service.invoke({
             context: "contact", 
             contact_id: contact.id
         });
-    //}
-    //catch(err){
-      //  sendEmail("tom.vranken@oneacrefund.org", "URGENT - Service ID misconfiguration for aggr training", "Service ID: "+ ServiceID);
-    //}
+    }
+    catch(err){
+        sendEmail("tom.vranken@oneacrefund.org", "URGENT - Service ID misconfiguration for aggr training", "Service ID: "+ ServiceID);
+    }
 };
 
 var LocationNotKnown = function (Location){
@@ -3132,8 +3132,11 @@ addInputHandler('TrainingPlatformSelect', function(input) {
     else {
         TrainingTriggeredIVRText();
         hangUp();
-        if (GetLang()){TriggerTraining("SV40cc89e83d0e5810")}
-        else {TriggerTraining("SV6b002eba0603b476")}
-
+        if (GetLang()){var service = project.initServiceById("SV40cc89e83d0e5810")}
+        else {var service = project.initServiceById("SV6b002eba0603b476")}
+        service.invoke({
+            context: "call", 
+            contact_id: contact.id
+        });
     }
 });
