@@ -182,16 +182,16 @@ var RosterColRequest = function (AccNum,Amount){
 };
 
 var TriggerTraining = function (ServiceID){
-    try{
+    //try{
         var service = project.initServiceById(ServiceID);
         service.invoke({
             context: "contact", 
             contact_id: contact.id
         });
-    }
-    catch(err){
-        sendEmail("tom.vranken@oneacrefund.org", "URGENT - Service ID misconfiguration for aggr training", "Service ID: "+ ServiceID);
-    }
+    //}
+    //catch(err){
+      //  sendEmail("tom.vranken@oneacrefund.org", "URGENT - Service ID misconfiguration for aggr training", "Service ID: "+ ServiceID);
+    //}
 };
 
 var LocationNotKnown = function (Location){
