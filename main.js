@@ -3135,7 +3135,7 @@ addInputHandler('TrainingPlatformSelect', function(input) {
         if (GetLang()){var service = project.initServiceById("SV40cc89e83d0e5810")}
         else {var service = project.initServiceById("SV6b002eba0603b476")}
         service.invoke({
-            event: "call_complete",
+            event: "Q1",
             context: "call", 
             contact_id: contact.id
         });
