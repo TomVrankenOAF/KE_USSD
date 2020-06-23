@@ -1030,8 +1030,8 @@ var TrainingMenuNextText = function (){
     else {sayText("8: Wadudu/Magonjwa\n9: Kupanda Mboga")}
 };
 var TrainingPlatSelectText = function (){
-    if (GetLang()){sayText("1. SMS\n2. KUPIGIWA")}
-    else {sayText("1. SMS\n2. Get a FREE CALL")}
+    if (GetLang()){sayText("1. SMS\n2. Get a FREE CALL")}
+    else {sayText("1. SMS\n2. KUPIGIWA")}
 };
 
 
