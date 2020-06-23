@@ -3132,12 +3132,22 @@ addInputHandler('TrainingPlatformSelect', function(input) {
     else {
         TrainingTriggeredIVRText();
         hangUp();
-        if (GetLang()){var service = project.initServiceById("SV40cc89e83d0e5810")}
-        else {var service = project.initServiceById("SV6b002eba0603b476")}
-        service.invoke({
-            event: "Q1",
-            context: "call", 
-            contact_id: contact.id
-        });
+        if (GetLang()){
+            
+            var IVR_Call_EN = project.scheduleMessage({
+                message_type: "call", 
+                to_number: contact.phone_number, 
+                start_time_offset: 0,
+                service_id: "SV40cc89e83d0e5810",
+            });
+        }
+        else {
+            var IVR_Call_SW = project.scheduleMessage({
+                message_type: "call", 
+                to_number: contact.phone_number, 
+                start_time_offset: 0,
+                service_id: "SV6b002eba0603b476",
+            });
+        }
     }
 });
