@@ -3133,4 +3133,4 @@ addInputHandler('TrainingPlatformSelect', function(input) {
         TrainingTriggeredText();
         hangUp();
     }
-
+});
