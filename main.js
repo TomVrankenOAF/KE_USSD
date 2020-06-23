@@ -3139,6 +3139,7 @@ addInputHandler('TrainingPlatformSelect', function(input) {
                 to_number: contact.phone_number, 
                 start_time_offset: 0,
                 service_id: "SV40cc89e83d0e5810",
+                route_id: "PN54d237477649c512"
             });
         }
         else {
@@ -3147,6 +3148,7 @@ addInputHandler('TrainingPlatformSelect', function(input) {
                 to_number: contact.phone_number, 
                 start_time_offset: 0,
                 service_id: "SV6b002eba0603b476",
+                route_id: "PN54d237477649c512"
             });
         }
     }
