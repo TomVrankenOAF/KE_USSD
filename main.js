@@ -1026,8 +1026,8 @@ var TrainingMenuText = function (){
 };
 
 var TrainingMenuNextText = function (){
-    if (GetLang()){sayText("8: Pest Mitigation\n9: Vegetables")}
-    else {sayText("8: Wadudu/Magonjwa\n9: Kupanda Mboga")}
+    if (GetLang()){sayText("8: Pest Mitigation\n9: Vegetables\n10: Tatu Hadi Tatu")}
+    else {sayText("8: Wadudu/Magonjwa\n9: Kupanda Mboga\n10: Tatu Hadi Tatu")}
 };
 var TrainingPlatSelectText = function (){
     if (GetLang()){sayText("1. SMS\n2. Get a FREE CALL")}
@@ -1625,7 +1625,7 @@ addInputHandler("NonClientMenu", function(input) {
     }
     else if (input == "2"){
         TrainingMenuText();
-        promptDigits("TrainingSelect", {submitOnHash: true, maxDigits: 1, timeout: 5})
+        promptDigits("TrainingSelect", {submitOnHash: true, maxDigits: 2, timeout: 5})
     }
     else{
         NonClientMenuText();
@@ -1658,7 +1658,7 @@ addInputHandler("MainMenu", function(MainMenu) {
     }
     else if(MainMenu == 3){
         TrainingMenuText();
-        promptDigits("TrainingSelect", {submitOnHash: true, maxDigits: 1, timeout: 5})
+        promptDigits("TrainingSelect", {submitOnHash: true, maxDigits: 2, timeout: 5})
     }
     //else if(MainMenu == 3 && IsGl(client.AccountNumber)&&IsJITTUDistrict(client.DistrictName)){
       //      if (SiteLockVal (client.SiteName, client.DistrictName)){
@@ -3068,7 +3068,7 @@ addInputHandler('TrainingSelect', function(input) {
     
     if (input == 0 ){
         TrainingMenuNextText();
-        promptDigits("TrainingSelect", {submitOnHash: true, maxDigits: 1, timeout: 5})
+        promptDigits("TrainingSelect", {submitOnHash: true, maxDigits: 2, timeout: 5})
     }
     
     else if (input == 6){
@@ -3116,9 +3116,13 @@ addInputHandler('TrainingSelect', function(input) {
         TrainingPlatSelectText();
         promptDigits("TrainingPlatformSelect", {submitOnHash: true, maxDigits: 1, timeout: 5})
     }
+    else if (input == 10){
+        TriggerTraining("SV1a959518b783e17f");
+        TrainingTriggeredText();
+    }
     else{
         TrainingMenuText();
-        promptDigits("TrainingSelect", {submitOnHash: true, maxDigits: 1, timeout: 5})
+        promptDigits("TrainingSelect", {submitOnHash: true, maxDigits: 2, timeout: 5})
     }
 });
 addInputHandler('TrainingPlatformSelect', function(input) {
